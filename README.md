@@ -1,2 +1,2 @@
-# education-class-api
+# education-model-api
 
