@@ -104,7 +104,6 @@ public class ClassServiceImpl implements ClassService {
         }
     }
 
-
     @Autowired
     public void setClassRepository(ClassRepository classRepository) {
         this.classRepository = classRepository;
