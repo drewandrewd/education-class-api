@@ -81,7 +81,6 @@ class EducationModelApiApplicationTests {
         System.out.println(classItem.getName());
     }
 
-
     @Autowired
     public void setModelService(ClassService classService) {
         this.classService = classService;
