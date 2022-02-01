@@ -5,28 +5,28 @@ import org.springframework.data.domain.*;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
-import phoenixit.education.models.Model;
+import phoenixit.education.models.Class;
 
 import java.util.List;
 
 @Repository
-public class ModelCustomRepositoryImpl implements ModelCustomRepository{
+public class ClassCustomRepositoryImpl implements ClassCustomRepository {
 
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<Model> fetchAll(String field, Sort.Direction direction) {
+    public List<Class> fetchAll(String field, Sort.Direction direction) {
         Query query = new Query();
         query.with(Sort.by(direction, field));
-        return mongoTemplate.find(query, Model.class);
+        return mongoTemplate.find(query, Class.class);
     }
 
     @Override
-    public Page<Model> fetchAllWithPagination(String field, Sort.Direction direction, int pages, int size) {
+    public Page<Class> fetchAllWithPagination(String field, Sort.Direction direction, int pages, int size) {
         Pageable pageable = PageRequest.of(pages, size, Sort.by(direction, field));
         Query query = new Query();
         query.with(pageable);
-        return new PageImpl<>( mongoTemplate.find(query, Model.class));
+        return new PageImpl<>( mongoTemplate.find(query, Class.class));
     }
 
     @Autowired

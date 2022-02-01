@@ -5,7 +5,7 @@ import lombok.*;
 import java.util.Date;
 
 @Data
-public class ModelResponse {
+public class ClassResponse {
 
     private String id;
     private String name;
@@ -15,6 +15,5 @@ public class ModelResponse {
     private Date updateAt;
     private String creator;
     private String updater;
-    private String type;
-    private Long classNodeId;
+    private String key;
 }

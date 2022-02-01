@@ -3,9 +3,8 @@ package phoenixit.education.models;
 import lombok.Data;
 
 @Data
-public class ModelLinkMessage {
+public class ClassLinkMessage {
 
-    private Long modelNodeId;
-    private String modelNodeTitle;
+    private String classNodeTitle;
     private Long classNodeId;
 }

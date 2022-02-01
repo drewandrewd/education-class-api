@@ -6,11 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import phoenixit.education.exceptions.JsonRpcException;
-import phoenixit.education.exceptions.ModelNotFoundException;
-import phoenixit.education.models.ModelRequest;
-import phoenixit.education.models.ModelResponse;
-import phoenixit.education.services.ModelLinkService;
-import phoenixit.education.services.ModelService;
+import phoenixit.education.exceptions.ClassNotFoundException;
+import phoenixit.education.models.ClassRequest;
+import phoenixit.education.models.ClassResponse;
+import phoenixit.education.services.ClassLinkService;
+import phoenixit.education.services.ClassService;
 
 import java.util.List;
 
@@ -18,61 +18,61 @@ import java.util.List;
 @AutoJsonRpcServiceImpl
 public class APIImpl implements API {
 
- private ModelService modelService;
- private ModelLinkService modelLinkService;
+ private ClassService classService;
+// private ClassLinkService modelLinkService;
 
     @Override
-    public ModelResponse create(ModelRequest modelRequest) throws Throwable {
-        return modelService.create(modelRequest);
+    public ClassResponse create(ClassRequest classRequest) throws Throwable {
+        return classService.create(classRequest);
     }
 
     @Override
-    public ModelResponse update(ModelRequest modelRequest) throws Throwable {
-        return modelService.update(modelRequest);
+    public ClassResponse update(ClassRequest classRequest) throws Throwable {
+        return classService.update(classRequest);
     }
 
     @Override
-    public ModelResponse delete(String id) throws Throwable {
-        return modelService.delete(id);
+    public ClassResponse delete(String id) throws Throwable {
+        return classService.delete(id);
     }
 
     @Override
-    public List<ModelResponse> fetchAll(String field, Sort.Direction direction) throws ModelNotFoundException {
-        return modelService.fetchAll(field, direction);
+    public List<ClassResponse> fetchAll(String field, Sort.Direction direction) throws ClassNotFoundException {
+        return classService.fetchAll(field, direction);
     }
 
     @Override
-    public Page<ModelResponse> fetchAllWithPagination(String field, Sort.Direction direction, int pages, int size) throws ModelNotFoundException {
-        return modelService.fetchAllWithPagination(field, direction, pages, size);
+    public Page<ClassResponse> fetchAllWithPagination(String field, Sort.Direction direction, int pages, int size) throws ClassNotFoundException {
+        return classService.fetchAllWithPagination(field, direction, pages, size);
     }
 
-    @Override
-    public ModelResponse fetchById(String id) throws ModelNotFoundException {
-       return modelService.fetchById(id);
-    }
+//    @Override
+//    public ClassResponse fetchById(String id) throws ClassNotFoundException {
+//       return classService.fetchById(id);
+//    }
 
-    @Override
-    public String fetchByClassNodeId(Long classNodeId) throws Throwable {
-        return modelLinkService.fetchByClassNodeId(classNodeId);
-    }
-
-    @Override
-    public Long fetchByModelNodeId(Long modelNodeId) throws Throwable {
-        return modelLinkService.fetchByModelNodeId(modelNodeId);
-    }
-
-    @Override
-    public List<Long> fetchModelsByClassNodeId(Long classNodeId) throws JsonRpcException {
-        return modelLinkService.fetchModelsByClassNodeId(classNodeId);
-    }
+//    @Override
+//    public String fetchByClassNodeId(Long classNodeId) throws Throwable {
+//        return modelLinkService.fetchByClassNodeId(classNodeId);
+//    }
+//
+//    @Override
+//    public Long fetchByModelNodeId(Long modelNodeId) throws Throwable {
+//        return modelLinkService.fetchByModelNodeId(modelNodeId);
+//    }
+//
+//    @Override
+//    public List<Long> fetchModelsByClassNodeId(Long classNodeId) throws JsonRpcException {
+//        return modelLinkService.fetchModelsByClassNodeId(classNodeId);
+//    }
 
     @Autowired
-    public void setModelService(ModelService modelService) {
-        this.modelService = modelService;
+    public void setclassService(ClassService classService) {
+        this.classService = classService;
     }
 
-    @Autowired
-    public void setModelLinkService(ModelLinkService modelLinkService) {
-        this.modelLinkService = modelLinkService;
-    }
+//    @Autowired
+//    public void setModelLinkService(ClassLinkService modelLinkService) {
+//        this.modelLinkService = modelLinkService;
+//    }
 }

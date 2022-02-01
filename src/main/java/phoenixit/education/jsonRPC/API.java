@@ -5,23 +5,23 @@ import com.googlecode.jsonrpc4j.JsonRpcService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import phoenixit.education.exceptions.JsonRpcException;
-import phoenixit.education.exceptions.ModelNotFoundException;
-import phoenixit.education.models.ModelRequest;
-import phoenixit.education.models.ModelResponse;
+import phoenixit.education.exceptions.ClassNotFoundException;
+import phoenixit.education.models.ClassRequest;
+import phoenixit.education.models.ClassResponse;
 
 import java.util.List;
 
-@JsonRpcService("/api/v1/model.json")
+@JsonRpcService("/api/v1/class.json")
 public interface API {
 
-    ModelResponse create(@JsonRpcParam(value = "modelRequest") ModelRequest modelRequest) throws Throwable;
-    ModelResponse update(@JsonRpcParam(value = "modelRequest") ModelRequest modelRequest) throws Throwable;
-    ModelResponse delete(@JsonRpcParam(value = "id") String id) throws Throwable;
+    ClassResponse create(@JsonRpcParam(value = "classRequest") ClassRequest classRequest) throws Throwable;
+    ClassResponse update(@JsonRpcParam(value = "classRequest") ClassRequest classRequest) throws Throwable;
+    ClassResponse delete(@JsonRpcParam(value = "id") String id) throws Throwable;
     //todo return not void result
-    List<ModelResponse> fetchAll(@JsonRpcParam(value = "field") String field, @JsonRpcParam(value = "direction") Sort.Direction direction) throws ModelNotFoundException;
-    Page<ModelResponse> fetchAllWithPagination(@JsonRpcParam(value = "field") String field, @JsonRpcParam(value = "direction") Sort.Direction direction, @JsonRpcParam(value = "pages") int pages, @JsonRpcParam(value = "size") int size) throws ModelNotFoundException;
-    ModelResponse fetchById(@JsonRpcParam(value = "id") String id) throws ModelNotFoundException;
-    String fetchByClassNodeId(@JsonRpcParam(value = "classNodeId") Long classNodeId) throws Throwable;
-    Long fetchByModelNodeId(@JsonRpcParam(value = "modelNodeId") Long modelNodeId) throws Throwable;
-    List<Long> fetchModelsByClassNodeId(@JsonRpcParam(value = "classNodeId") Long classNodeId) throws JsonRpcException;
+    List<ClassResponse> fetchAll(@JsonRpcParam(value = "field") String field, @JsonRpcParam(value = "direction") Sort.Direction direction) throws ClassNotFoundException;
+    Page<ClassResponse> fetchAllWithPagination(@JsonRpcParam(value = "field") String field, @JsonRpcParam(value = "direction") Sort.Direction direction, @JsonRpcParam(value = "pages") int pages, @JsonRpcParam(value = "size") int size) throws ClassNotFoundException;
+//    ClassResponse fetchById(@JsonRpcParam(value = "id") String id) throws ClassNotFoundException;
+//    String fetchByClassNodeId(@JsonRpcParam(value = "classNodeId") Long classNodeId) throws Throwable;
+//    Long fetchByModelNodeId(@JsonRpcParam(value = "modelNodeId") Long modelNodeId) throws Throwable;
+//    List<Long> fetchModelsByClassNodeId(@JsonRpcParam(value = "classNodeId") Long classNodeId) throws JsonRpcException;
 }

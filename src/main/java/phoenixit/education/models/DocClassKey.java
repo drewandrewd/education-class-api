@@ -3,20 +3,20 @@ package phoenixit.education.models;
 
 import lombok.Getter;
 
-public enum ModelType {
+public enum DocClassKey {
 
-    Electronic("Electronic"),
-    Paper("Paper");
+    Rock("Rock"),
+    Metal("Metal");
 
-    ModelType(String type) {
+    DocClassKey(String type) {
         this.type = type;
     }
 
     @Getter private String type;
 
-    public static ModelType convertToEnum(String line) {
-        ModelType result = null;
-        for (ModelType type : ModelType.values()) {
+    public static DocClassKey convertToEnum(String line) {
+        DocClassKey result = null;
+        for (DocClassKey type : DocClassKey.values()) {
             if (type.getType().equals(line)) {
                 result = type;
                 break;

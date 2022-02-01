@@ -4,24 +4,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.core.AutoConfigureCache;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import phoenixit.education.components.Converter;
 import phoenixit.education.exceptions.JsonRpcException;
-import phoenixit.education.exceptions.ModelNotFoundException;
-import phoenixit.education.models.Model;
-import phoenixit.education.models.ModelRequest;
-import phoenixit.education.models.ModelResponse;
-import phoenixit.education.repositories.ModelRepository;
-import phoenixit.education.services.ModelLinkService;
-import phoenixit.education.services.ModelService;
+import phoenixit.education.exceptions.ClassNotFoundException;
+import phoenixit.education.models.ClassResponse;
+import phoenixit.education.repositories.ClassRepository;
+import phoenixit.education.services.ClassLinkService;
+import phoenixit.education.services.ClassService;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.springframework.data.domain.Sort.Direction.DESC;
 
@@ -29,9 +22,9 @@ import static org.springframework.data.domain.Sort.Direction.DESC;
 @SpringBootTest
 class EducationModelApiApplicationTests {
 
-    private ModelService modelService;
-    private ModelRepository repository;
-    private ModelLinkService modelLinkService;
+    private ClassService classService;
+    private ClassRepository repository;
+    private ClassLinkService modelLinkService;
     private Converter converter;
 
     @Test
@@ -70,8 +63,8 @@ class EducationModelApiApplicationTests {
 //    }
 //
     @Test
-    void fetchAllTest() throws ModelNotFoundException {
-        List<ModelResponse> list = modelService.fetchAll("name", DESC);
+    void fetchAllTest() throws ClassNotFoundException {
+        List<ClassResponse> list = classService.fetchAll("name", DESC);
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getName());
         }
@@ -79,43 +72,28 @@ class EducationModelApiApplicationTests {
 
     @Test
     void fetchAllWithPaginationTest() {
-        Page<ModelResponse> listOfModels = modelService.fetchAllWithPagination("name", DESC, 1, 5);
+        Page<ClassResponse> listOfModels = classService.fetchAllWithPagination("name", DESC, 1, 5);
         System.out.println(listOfModels.getContent());
     }
 
-//    @Test void fetchByIdTest() {
-//        Model model = modelService.fetchById("61e05b1cf1d16059e3f4368c");
-//        System.out.println(model.getName());
-//    }
-
-    @Test void fetchByClassNodeIdTest() throws Throwable {
-        System.out.println(modelLinkService.fetchByClassNodeId(84354L));;
+    @Test void fetchByIdTest() throws ClassNotFoundException, java.lang.ClassNotFoundException {
+        ClassResponse classItem = classService.fetchById("61f7c035143e6972d8324229");
+        System.out.println(classItem.getName());
     }
 
-    @Test
-    void fetchModelsByClassNodeIdTest() throws JsonRpcException {
-        List<Long> list = modelLinkService.fetchModelsByClassNodeId(84354L);
-        System.out.println(list);
-    }
 
-    @Test
-    void createDocTest() throws ModelNotFoundException {
-        Document document = modelService.createDoc("61e05b1cf1d16059e3f4368c");
-        System.out.println(converter.documentToModel(document));
+    @Autowired
+    public void setModelService(ClassService classService) {
+        this.classService = classService;
     }
 
     @Autowired
-    public void setModelService(ModelService modelService) {
-        this.modelService = modelService;
-    }
-
-    @Autowired
-    public void setRepository(ModelRepository repository) {
+    public void setRepository(ClassRepository repository) {
         this.repository = repository;
     }
 
     @Autowired
-    public void setModelLinkService(ModelLinkService modelLinkService) {
+    public void setModelLinkService(ClassLinkService modelLinkService) {
         this.modelLinkService = modelLinkService;
     }
 
