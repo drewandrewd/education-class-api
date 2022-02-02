@@ -19,7 +19,6 @@ import java.util.List;
 public class APIImpl implements API {
 
  private ClassService classService;
-// private ClassLinkService modelLinkService;
 
     @Override
     public ClassResponse create(ClassRequest classRequest) throws Throwable {
@@ -46,33 +45,13 @@ public class APIImpl implements API {
         return classService.fetchAllWithPagination(field, direction, pages, size);
     }
 
-//    @Override
-//    public ClassResponse fetchById(String id) throws ClassNotFoundException {
-//       return classService.fetchById(id);
-//    }
-
-//    @Override
-//    public String fetchByClassNodeId(Long classNodeId) throws Throwable {
-//        return modelLinkService.fetchByClassNodeId(classNodeId);
-//    }
-//
-//    @Override
-//    public Long fetchByModelNodeId(Long modelNodeId) throws Throwable {
-//        return modelLinkService.fetchByModelNodeId(modelNodeId);
-//    }
-//
-//    @Override
-//    public List<Long> fetchModelsByClassNodeId(Long classNodeId) throws JsonRpcException {
-//        return modelLinkService.fetchModelsByClassNodeId(classNodeId);
-//    }
+    @Override
+    public ClassResponse fetchById(String id) throws ClassNotFoundException, java.lang.ClassNotFoundException {
+       return classService.fetchById(id);
+    }
 
     @Autowired
     public void setclassService(ClassService classService) {
         this.classService = classService;
     }
-
-//    @Autowired
-//    public void setModelLinkService(ClassLinkService modelLinkService) {
-//        this.modelLinkService = modelLinkService;
-//    }
 }

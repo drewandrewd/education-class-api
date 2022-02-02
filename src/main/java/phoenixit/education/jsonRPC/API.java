@@ -17,11 +17,7 @@ public interface API {
     ClassResponse create(@JsonRpcParam(value = "classRequest") ClassRequest classRequest) throws Throwable;
     ClassResponse update(@JsonRpcParam(value = "classRequest") ClassRequest classRequest) throws Throwable;
     ClassResponse delete(@JsonRpcParam(value = "id") String id) throws Throwable;
-    //todo return not void result
     List<ClassResponse> fetchAll(@JsonRpcParam(value = "field") String field, @JsonRpcParam(value = "direction") Sort.Direction direction) throws ClassNotFoundException;
     Page<ClassResponse> fetchAllWithPagination(@JsonRpcParam(value = "field") String field, @JsonRpcParam(value = "direction") Sort.Direction direction, @JsonRpcParam(value = "pages") int pages, @JsonRpcParam(value = "size") int size) throws ClassNotFoundException;
-//    ClassResponse fetchById(@JsonRpcParam(value = "id") String id) throws ClassNotFoundException;
-//    String fetchByClassNodeId(@JsonRpcParam(value = "classNodeId") Long classNodeId) throws Throwable;
-//    Long fetchByModelNodeId(@JsonRpcParam(value = "modelNodeId") Long modelNodeId) throws Throwable;
-//    List<Long> fetchModelsByClassNodeId(@JsonRpcParam(value = "classNodeId") Long classNodeId) throws JsonRpcException;
+    ClassResponse fetchById(@JsonRpcParam(value = "id") String id) throws ClassNotFoundException, java.lang.ClassNotFoundException;
 }
