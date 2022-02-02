@@ -6,4 +6,4 @@ COPY ./target /opt
 RUN chmod 777 /opt/*
 
 EXPOSE 8090
-ENTRYPOINT ["java", "-jar", "/opt/education-model-api-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/opt/education-class-api-0.0.1-SNAPSHOT.jar"]
